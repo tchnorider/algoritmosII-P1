@@ -1,7 +1,9 @@
 package test;
 
 import estructuraAB.ArbolBinario;
-
+/*
+ *  Algoritmos II - Practico 1
+ */
 public class Practico1 {
 
 	public static void main(String[] args) {
