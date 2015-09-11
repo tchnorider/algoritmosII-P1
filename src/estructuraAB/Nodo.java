@@ -21,13 +21,4 @@ public class Nodo {
 	public void setDato(int dato) {
 		this.dato = dato;
 	}
-
-	public void insertarHijo(int d) {
-		Nodo neo = new Nodo(d);
-		if (this.nodoIzq == null) {
-			this.nodoIzq = neo;
-		} else if (this.nodoDer == null) {
-			this.nodoDer = neo;
-		}
-	}
 }

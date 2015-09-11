@@ -1,6 +1,6 @@
 package estructuraAB;
 
-public class ArbolBinario {
+public class ArbolB {
 
 	private Nodo raiz;
 	private int cantNodos;
@@ -8,11 +8,11 @@ public class ArbolBinario {
 	private int peso;
 	private int altura;
 
-	public ArbolBinario() {
+	public ArbolB() {
 		this.raiz = null;
 	}
 
-	public ArbolBinario(int dato) {
+	public ArbolB(int dato) {
 		this.raiz = new Nodo();
 		raiz.setDato(dato);
 		this.cantHojas = 0;
@@ -54,6 +54,50 @@ public class ArbolBinario {
 		return this.raiz;
 	}
 
+	// Ejercicio 3 - a - insertar
+	public void insertar(int x) {
+		Nodo n = new Nodo(x);
+		if (this.raiz == null) {
+			this.raiz = n;
+		} else {
+			insertar(n, this.raiz);
+		}
+	}
+
+	// Pre-condicion: n <> null
+	private void insertar(Nodo n, Nodo raiz) {
+		if (raiz.getDato() > n.getDato()) {
+			if (n.nodoIzq == null) {
+				n.nodoIzq = n;
+			} else {
+				insertar(n, n.nodoIzq);
+			}
+		} else {
+			if (n.nodoDer == null) {
+				n.nodoDer = n;
+			} else {
+				insertar(n, n.nodoDer);
+			}
+		}
+	}
+
+	// d - pertenece
+	public boolean pertenece(int x) {
+		return pertenece(x, this.raiz);
+	}
+
+	private boolean pertenece(int x, Nodo n) {
+		if (n == null) {
+			return false;
+		}
+		if (n.getDato() == x) {
+			return true;
+		} else {
+			return x > n.getDato() ? pertenece(x, n.nodoDer) : pertenece(x,
+					n.nodoIzq);
+		}
+	}
+
 	public void imprimir() {
 		imprimir(this.raiz);
 	}
@@ -71,6 +115,10 @@ public class ArbolBinario {
 		return existe(this.raiz, d);
 	}
 
+	// Use of the lazy operator ('||'): if the call with the left node returns
+	// true then the right call never gets done because there's no need to
+	// evaluate this return since either way the result will be true even if
+	// this return is false.
 	private boolean existe(Nodo n, int d) {
 		if (n == null) {
 			return false;
@@ -78,10 +126,6 @@ public class ArbolBinario {
 		if (n.getDato() == d) {
 			return true;
 		}
-		/*
-		 * existe(n.nodoIzq, d); existe(n.nodoDer, d); // "||" operador lazy, si
-		 * la llamada izq retorna true, no evalua la llamada derecha
-		 */
 		return existe(n.nodoIzq, d) || existe(n.nodoDer, d);
 	}
 
@@ -133,10 +177,36 @@ public class ArbolBinario {
 		}
 		int altIzq = altura(n.nodoIzq);
 		int altDer = altura(n.nodoDer);
-		// (IF ? THEN:ELSE)
-		// MayorEntre(IF izq or der)
 		return 1 + (altIzq > altDer ? altIzq : altDer);
+	}
 
+	// Pre order: the father gets evaluated first
+	public void imprimirPreOrder(Nodo n) {
+		if (n == null) {
+			return;
+		}
+		imprimirPreOrder(n.nodoDer);
+		imprimirPreOrder(n.nodoIzq);
+	}
+
+	// Post order: the children gets evaluated first
+	public void imprimirPostOrder(Nodo n) {
+		if (n == null) {
+			return;
+		}
+		imprimirPostOrder(n.nodoDer);
+		imprimirPostOrder(n.nodoIzq);
+		System.out.println(n.getDato());
+	}
+
+	// in order: evaluate right children first, then the father then the left children
+	public void imprimirInOrder(Nodo n) {
+		if (n == null) {
+			return;
+		}
+		imprimirPostOrder(n.nodoDer);
+		System.out.println(n.getDato());
+		imprimirPostOrder(n.nodoIzq);
 	}
 
 }

@@ -1,6 +1,6 @@
 package estructuraABB;
 
-public class ABB {
+public class ArbolBB {
 
 	private Nodo raiz;
 	private int cantNodos;
@@ -8,11 +8,11 @@ public class ABB {
 	private int peso;
 	private int altura;
 
-	public ABB() {
+	public ArbolBB() {
 		this.raiz = null;
 	}
 
-	public ABB(int dato) {
+	public ArbolBB(int dato) {
 		this.raiz = new Nodo();
 		raiz.setDato(dato);
 		this.cantHojas = 0;
@@ -54,9 +54,7 @@ public class ABB {
 		return this.raiz;
 	}
 
-	// Ejercicio 3
-	// a - insertar
-	// lleve!
+	// Ejercicio 3 - a - insertar
 	public void insertar(int x) {
 		Nodo n = new Nodo(x);
 		if (this.raiz == null) {
@@ -82,6 +80,22 @@ public class ABB {
 			}
 		}
 	}
+	
+	// Ejercicio 3 - b - TODO: TEST
+		public void borrarMinimo() {
+			if (this.raiz == null) {
+				return;
+			}
+			borrarMin(this.raiz);
+		}
+
+		private void borrarMin(Nodo nodo) {
+			if (nodo.nodoIzq == null) {
+				nodo = null;
+			} else {
+				borrarMin(nodo.nodoIzq);
+			}
+		}
 
 	// d - pertenece
 	public boolean pertenece(int x) {
@@ -89,20 +103,17 @@ public class ABB {
 	}
 
 	private boolean pertenece(int x, Nodo n) {
-		if(n==null){
+		if (n == null) {
 			return false;
 		}
 		if (n.getDato() == x) {
 			return true;
-		} else if (n.getDato() > x) {
-			return pertenece(x, n.nodoIzq);
 		} else {
-			return pertenece(x, n.nodoDer);
+			return x > n.getDato() ? pertenece(x, n.nodoDer) : pertenece(x,
+					n.nodoIzq);
 		}
 	}
 
-	// return x > n.getDato() ? pertenece(x, n.nodoDer), pertenece(x, n.nodoIzq);
-	
 	public void imprimir() {
 		imprimir(this.raiz);
 	}
@@ -120,6 +131,10 @@ public class ABB {
 		return existe(this.raiz, d);
 	}
 
+	// Use of the lazy operator ('||'): if the call with the left node returns
+	// true then the right call never gets done because there's no need to
+	// evaluate this return since either way the result will be true even if
+	// this return is false.
 	private boolean existe(Nodo n, int d) {
 		if (n == null) {
 			return false;
@@ -127,10 +142,6 @@ public class ABB {
 		if (n.getDato() == d) {
 			return true;
 		}
-		/*
-		 * existe(n.nodoIzq, d); existe(n.nodoDer, d); // "||" operador lazy, si
-		 * la llamada izq retorna true, no evalua la llamada derecha
-		 */
 		return existe(n.nodoIzq, d) || existe(n.nodoDer, d);
 	}
 
@@ -182,13 +193,10 @@ public class ABB {
 		}
 		int altIzq = altura(n.nodoIzq);
 		int altDer = altura(n.nodoDer);
-		// (IF ? THEN:ELSE)
-		// MayorEntre(IF izq or der)
 		return 1 + (altIzq > altDer ? altIzq : altDer);
-
 	}
 
-	// pre order: primero analizo el padre
+	// Pre order: the father gets evaluated first
 	public void imprimirPreOrder(Nodo n) {
 		if (n == null) {
 			return;
@@ -197,7 +205,7 @@ public class ABB {
 		imprimirPreOrder(n.nodoIzq);
 	}
 
-	// post order: primero analizo los hijos
+	// Post order: the children gets evaluated first
 	public void imprimirPostOrder(Nodo n) {
 		if (n == null) {
 			return;
@@ -207,7 +215,7 @@ public class ABB {
 		System.out.println(n.getDato());
 	}
 
-	// in order: primero analizo los hijos
+	// in order: evaluate right children first, then the father then the left children
 	public void imprimirInOrder(Nodo n) {
 		if (n == null) {
 			return;
