@@ -81,23 +81,6 @@ public class ArbolB {
 		}
 	}
 
-	// d - pertenece
-	public boolean pertenece(int x) {
-		return pertenece(x, this.raiz);
-	}
-
-	private boolean pertenece(int x, Nodo n) {
-		if (n == null) {
-			return false;
-		}
-		if (n.getDato() == x) {
-			return true;
-		} else {
-			return x > n.getDato() ? pertenece(x, n.nodoDer) : pertenece(x,
-					n.nodoIzq);
-		}
-	}
-
 	public void imprimir() {
 		imprimir(this.raiz);
 	}
@@ -208,5 +191,11 @@ public class ArbolB {
 		System.out.println(n.getDato());
 		imprimirPostOrder(n.nodoIzq);
 	}
+
+	public String cantidadDeNodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }

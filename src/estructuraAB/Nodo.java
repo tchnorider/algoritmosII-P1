@@ -21,4 +21,9 @@ public class Nodo {
 	public void setDato(int dato) {
 		this.dato = dato;
 	}
+
+	public void insertarHijo(Integer hijo1) {
+		// TODO Auto-generated method stub
+		
+	}
 }

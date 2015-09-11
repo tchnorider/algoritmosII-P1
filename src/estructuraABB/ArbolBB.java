@@ -127,24 +127,6 @@ public class ArbolBB {
 		imprimir(n.nodoDer);
 	}
 
-	public boolean existe(int d) {
-		return existe(this.raiz, d);
-	}
-
-	// Use of the lazy operator ('||'): if the call with the left node returns
-	// true then the right call never gets done because there's no need to
-	// evaluate this return since either way the result will be true even if
-	// this return is false.
-	private boolean existe(Nodo n, int d) {
-		if (n == null) {
-			return false;
-		}
-		if (n.getDato() == d) {
-			return true;
-		}
-		return existe(n.nodoIzq, d) || existe(n.nodoDer, d);
-	}
-
 	public Nodo buscar(int d) {
 		return buscar(this.raiz, d);
 	}
