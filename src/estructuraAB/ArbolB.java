@@ -40,7 +40,7 @@ public class ArbolB {
 	}
 
 	public int getAltura() {
-		return altura;
+		return calcularAltura(this.raiz, 0);
 	}
 
 	public void setAltura(int altura) {
@@ -210,5 +210,39 @@ public class ArbolB {
 		this.setPeso(peso + calcularPeso(nodo.nodoIzq));
 		peso++;
 		return peso;
+	}
+
+	private int calcularAltura(Nodo nodo, Integer alturaAux) {
+		if (nodo == null) {
+			return 0;
+		}
+		if (alturaAux > this.altura) {
+			this.altura = alturaAux;
+		}
+		this.calcularAltura(nodo.nodoIzq, alturaAux);
+		this.calcularAltura(nodo.nodoDer, alturaAux);
+		alturaAux++;
+		return alturaAux;
+	}
+
+	private Integer calcAltura(Nodo n, Integer aux) {
+		if (n == null) {
+			return 0;
+		}
+		if (n.nodoIzq == null && n.nodoDer == null) {
+			if (aux > altura) {
+				altura = aux;
+			}
+			aux = 0;
+		} else {
+			if (n.nodoIzq != null) {
+				aux++;
+				calcAltura(n.nodoIzq, aux);
+			} else if (n.nodoDer != null) {
+				aux++;
+				calcAltura(n.nodoDer, aux);
+			}
+		}
+		return this.altura;
 	}
 }

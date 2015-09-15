@@ -58,8 +58,7 @@ public class Practico1 {
 	}
 
 	private static void ejercicio1_d() {
-		// TODO Auto-generated method stub
-
+		System.out.println(" La altura del arbol es: " + arbolBin.getAltura());
 	}
 
 	private static void ejercicio1_e() {
