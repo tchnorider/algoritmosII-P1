@@ -5,8 +5,6 @@ public class ArbolB {
 	private Nodo raiz;
 	private int cantNodos;
 	private int cantHojas;
-	private int peso;
-	private int altura;
 
 	public ArbolB() {
 		this.raiz = null;
@@ -16,7 +14,6 @@ public class ArbolB {
 		this.raiz = new Nodo();
 		raiz.setDato(dato);
 		this.cantHojas = 0;
-		this.peso = 0;
 	}
 
 	private void setCantNodos(int cantNodos) {
@@ -33,18 +30,6 @@ public class ArbolB {
 
 	public Integer getPeso() {
 		return calcularPeso(this.raiz) - 1;
-	}
-
-	public void setPeso(int peso) {
-		this.peso = peso;
-	}
-
-	public int getAltura() {
-		return calcularAltura(this.raiz, 0);
-	}
-
-	public void setAltura(int altura) {
-		this.altura = altura;
 	}
 
 	public Nodo getRaiz() {
@@ -149,16 +134,16 @@ public class ArbolB {
 		return this.cantHojas;
 	}
 
-	public int altura() {
+	public Integer getAltura() {
 		return altura(this.raiz);
 	}
 
-	private int altura(Nodo n) {
+	private Integer altura(Nodo n) {
 		if (n == null) {
 			return -1;
 		}
-		int altIzq = altura(n.nodoIzq);
-		int altDer = altura(n.nodoDer);
+		Integer altIzq = altura(n.nodoIzq);
+		Integer altDer = altura(n.nodoDer);
 		return 1 + (altIzq > altDer ? altIzq : altDer);
 	}
 
@@ -206,43 +191,8 @@ public class ArbolB {
 		if (nodo == null) {
 			return 0;
 		}
-		this.setPeso(peso + calcularPeso(nodo.nodoDer));
-		this.setPeso(peso + calcularPeso(nodo.nodoIzq));
-		peso++;
-		return peso;
-	}
-
-	private int calcularAltura(Nodo nodo, Integer alturaAux) {
-		if (nodo == null) {
-			return 0;
-		}
-		if (alturaAux > this.altura) {
-			this.altura = alturaAux;
-		}
-		this.calcularAltura(nodo.nodoIzq, alturaAux);
-		this.calcularAltura(nodo.nodoDer, alturaAux);
-		alturaAux++;
-		return alturaAux;
-	}
-
-	private Integer calcAltura(Nodo n, Integer aux) {
-		if (n == null) {
-			return 0;
-		}
-		if (n.nodoIzq == null && n.nodoDer == null) {
-			if (aux > altura) {
-				altura = aux;
-			}
-			aux = 0;
-		} else {
-			if (n.nodoIzq != null) {
-				aux++;
-				calcAltura(n.nodoIzq, aux);
-			} else if (n.nodoDer != null) {
-				aux++;
-				calcAltura(n.nodoDer, aux);
-			}
-		}
-		return this.altura;
+		Integer aux = calcularPeso(nodo.nodoDer) + calcularPeso(nodo.nodoIzq);
+		aux++;
+		return aux;
 	}
 }
