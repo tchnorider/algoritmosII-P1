@@ -54,7 +54,7 @@ public class ArbolBB {
 		return this.raiz;
 	}
 
-	// Ejercicio 3 - a - insertar
+	// E.3 |A| Insert
 	public void insertar(int x) {
 		Nodo n = new Nodo(x);
 		if (this.raiz == null) {
@@ -64,7 +64,7 @@ public class ArbolBB {
 		}
 	}
 
-	// Pre-condicion: n <> null
+	// Precondition: n <> null
 	private void insertar(Nodo n, Nodo raiz) {
 		if (raiz.getDato() > n.getDato()) {
 			if (n.nodoIzq == null) {
@@ -80,24 +80,24 @@ public class ArbolBB {
 			}
 		}
 	}
-	
-	// Ejercicio 3 - b - TODO: TEST
-		public void borrarMinimo() {
-			if (this.raiz == null) {
-				return;
-			}
-			borrarMin(this.raiz);
-		}
 
-		private void borrarMin(Nodo nodo) {
-			if (nodo.nodoIzq == null) {
-				nodo = null;
-			} else {
-				borrarMin(nodo.nodoIzq);
-			}
+	// E.3 |B| TODO: TEST
+	public void borrarMinimo() {
+		if (this.raiz == null) {
+			return;
 		}
+		borrarMin(this.raiz);
+	}
 
-	// d - pertenece
+	private void borrarMin(Nodo nodo) {
+		if (nodo.nodoIzq == null) {
+			nodo.nodoIzq = null;
+		} else {
+			borrarMin(nodo.nodoIzq);
+		}
+	}
+
+	// E.3 |D| Belongs(x)
 	public boolean pertenece(int x) {
 		return pertenece(x, this.raiz);
 	}
@@ -114,17 +114,30 @@ public class ArbolBB {
 		}
 	}
 
-	public void imprimir() {
-		imprimir(this.raiz);
+	public void imprimirAsc() {
+		imprimirAsc(this.raiz);
 	}
 
-	private void imprimir(Nodo n) {
+	private void imprimirAsc(Nodo n) {
 		if (n == null) {
 			return;
 		}
 		System.out.println(n.getDato());
-		imprimir(n.nodoIzq);
-		imprimir(n.nodoDer);
+		imprimirAsc(n.nodoIzq);
+		imprimirAsc(n.nodoDer);
+	}
+
+	public void imprimirDesc() {
+		imprimirDesc(this.raiz);
+	}
+
+	private void imprimirDesc(Nodo n) {
+		if (n == null) {
+			return;
+		}
+		imprimirAsc(n.nodoIzq);
+		imprimirAsc(n.nodoDer);
+		System.out.println(n.getDato());
 	}
 
 	public Nodo buscar(int d) {
@@ -197,7 +210,8 @@ public class ArbolBB {
 		System.out.println(n.getDato());
 	}
 
-	// in order: evaluate right children first, then the father then the left children
+	// in order: evaluate right children first, then the father then the left
+	// children
 	public void imprimirInOrder(Nodo n) {
 		if (n == null) {
 			return;
@@ -205,6 +219,16 @@ public class ArbolBB {
 		imprimirPostOrder(n.nodoDer);
 		System.out.println(n.getDato());
 		imprimirPostOrder(n.nodoIzq);
+	}
+
+	public void borrarElemento(Integer hijo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void insertarOrdenado(Integer entero) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

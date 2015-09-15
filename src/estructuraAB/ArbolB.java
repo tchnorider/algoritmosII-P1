@@ -18,20 +18,16 @@ public class ArbolB {
 		this.cantHojas = 0;
 	}
 
-	public int getCantNodos() {
-		return cantNodos;
+	private void setCantNodos(int cantNodos) {
+		this.cantNodos = cantNodos;
 	}
 
-	public void setCantNodos(int cantNodos) {
-		this.cantNodos = cantNodos;
+	public Integer getCantNodos() {
+		return calcularCantidadNodos(this.raiz);
 	}
 
 	public int getCantHojas() {
 		return cantHojas;
-	}
-
-	public void setCantHojas(int cantHojas) {
-		this.cantHojas = cantHojas;
 	}
 
 	public int getPeso() {
@@ -54,7 +50,7 @@ public class ArbolB {
 		return this.raiz;
 	}
 
-	// Ejercicio 3 - a - insertar
+	// E.3 | A | insert(x)
 	public void insertar(int x) {
 		Nodo n = new Nodo(x);
 		if (this.raiz == null) {
@@ -64,7 +60,7 @@ public class ArbolB {
 		}
 	}
 
-	// Pre-condicion: n <> null
+	// Precondition: n <> null
 	private void insertar(Nodo n, Nodo raiz) {
 		if (raiz.getDato() > n.getDato()) {
 			if (n.nodoIzq == null) {
@@ -140,13 +136,15 @@ public class ArbolB {
 		if (n == null) {
 			return cantHojas;
 		}
-		if (n.nodoIzq == null) {
-			this.cantHojas++;
-		} else if (n.nodoDer == null) {
-			this.cantHojas++;
+		if (n.nodoIzq == null && n.nodoDer == null) {
+			cantHojas++;
+		} else {
+			if (n.nodoIzq != null) {
+				cantidadDeHojas(n.nodoIzq);
+			} else if (n.nodoDer != null) {
+				cantidadDeHojas(n.nodoDer);
+			}
 		}
-		cantidadDeHojas(n.nodoIzq);
-		cantidadDeHojas(n.nodoDer);
 		return this.cantHojas;
 	}
 
@@ -182,7 +180,8 @@ public class ArbolB {
 		System.out.println(n.getDato());
 	}
 
-	// in order: evaluate right children first, then the father then the left children
+	// in order: evaluate right children first, then the father then the left
+	// children
 	public void imprimirInOrder(Nodo n) {
 		if (n == null) {
 			return;
@@ -192,10 +191,13 @@ public class ArbolB {
 		imprimirPostOrder(n.nodoIzq);
 	}
 
-	public String cantidadDeNodos() {
-		// TODO Auto-generated method stub
-		return null;
+	private Integer calcularCantidadNodos(Nodo nodo) {
+		if (nodo == null) {
+			return 0;
+		}
+		this.setCantNodos(cantNodos + calcularCantidadNodos(nodo.nodoDer));
+		this.setCantNodos(cantNodos + calcularCantidadNodos(nodo.nodoIzq));
+		cantNodos++;
+		return cantNodos;
 	}
-	
-
 }
