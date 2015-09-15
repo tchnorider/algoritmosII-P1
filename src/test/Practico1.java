@@ -36,12 +36,10 @@ public class Practico1 {
 		 * 
 		 * ejercicio2(); // insert(numbers) and display
 		 * 
-		 * ejercicio3_a(); // insert(x)
-		 * ejercicio3_b(); // erase minimum
-		 * ejercicio3_c(); // erase(x)
-		 * ejercicio3_d(); // belongs(x)
-		 * ejercicio3_e(); // list ascending order 
-		 * ejercicio3_f(); // list descending order
+		 * ejercicio3_a(); // insert(x) ejercicio3_b(); // erase minimum
+		 * ejercicio3_c(); // erase(x) ejercicio3_d(); // belongs(x)
+		 * ejercicio3_e(); // list ascending order ejercicio3_f(); // list
+		 * descending order
 		 */
 	}
 
@@ -56,8 +54,7 @@ public class Practico1 {
 	}
 
 	private static void ejercicio1_c() {
-		// TODO Auto-generated method stub
-
+		System.out.println(" El peso del arbol es: " + arbolBin.getPeso());
 	}
 
 	private static void ejercicio1_d() {
