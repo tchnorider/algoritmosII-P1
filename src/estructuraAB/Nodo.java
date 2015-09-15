@@ -2,7 +2,7 @@ package estructuraAB;
 
 public class Nodo {
 
-	private int dato;
+	private Integer dato;
 	public Nodo nodoDer;
 	public Nodo nodoIzq;
 
@@ -14,11 +14,11 @@ public class Nodo {
 		this.dato = d;
 	}
 
-	public int getDato() {
+	public Integer getDato() {
 		return dato;
 	}
 
-	public void setDato(int dato) {
+	public void setDato(Integer dato) {
 		this.dato = dato;
 	}
 

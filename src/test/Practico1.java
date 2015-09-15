@@ -12,7 +12,9 @@ public class Practico1 {
 
 	private static ArbolBB arbolBinBusqueda;
 
-	static Integer hijo1 = 1, hijo2 = 2, hijo3 = 3, hijo4 = 4, hijo5 = 5;
+	// static Integer hijo1 = 1, hijo2 = 2, hijo3 = 3, hijo4 = 4, hijo5 = 5;
+
+	static Integer hijo1 = 4, hijo2 = 4, hijo3 = 4, hijo4 = 4, hijo5 = 4;
 
 	public static void main(String[] args) {
 
@@ -62,13 +64,23 @@ public class Practico1 {
 	}
 
 	private static void ejercicio1_e() {
-		// TODO Auto-generated method stub
-
+		if (arbolBin.todosPares()) {
+			System.out.println(" Todos los elementos del árbol son pares. ");
+		} else {
+			System.out
+					.println(" Existen impares entre los elementos del árbol. ");
+		}
 	}
 
 	private static void ejercicio1_f() {
-		// TODO Auto-generated method stub
 
+		ArbolB arbolBin2 = new ArbolB();
+		arbolBin2.insertar(6);
+		if (arbolBin.esIgualA(arbolBin2)) {
+			System.out.println(" Los dos árboles son iguales. ");
+		} else {
+			System.out.println(" Los dos árboles son diferentes. ");
+		}
 	}
 
 	private static void ejercicio1_g() {

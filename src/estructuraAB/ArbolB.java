@@ -195,4 +195,24 @@ public class ArbolB {
 		aux++;
 		return aux;
 	}
+
+	public boolean todosPares() {
+		return sonPares(this.raiz);
+	}
+
+	private boolean sonPares(Nodo nodo) {
+		if (nodo == null) {
+			return false;
+		}
+		if (nodo.getDato() % 2 == 0) {
+			return true;
+		}
+		return sonPares(nodo.nodoIzq) && sonPares(nodo.nodoDer) == true ? true
+				: false;
+	}
+
+	public boolean esIgualA(ArbolB arbol2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
