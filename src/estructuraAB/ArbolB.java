@@ -16,6 +16,7 @@ public class ArbolB {
 		this.raiz = new Nodo();
 		raiz.setDato(dato);
 		this.cantHojas = 0;
+		this.peso = 0;
 	}
 
 	private void setCantNodos(int cantNodos) {
@@ -30,8 +31,8 @@ public class ArbolB {
 		return cantHojas;
 	}
 
-	public int getPeso() {
-		return calcularPeso(this.raiz);
+	public Integer getPeso() {
+		return calcularPeso(this.raiz) - 1;
 	}
 
 	public void setPeso(int peso) {
@@ -205,9 +206,9 @@ public class ArbolB {
 		if (nodo == null) {
 			return 0;
 		}
-		this.setCantNodos(cantNodos + calcularCantidadNodos(nodo.nodoDer));
-		this.setCantNodos(cantNodos + calcularCantidadNodos(nodo.nodoIzq));
-		cantNodos++;
-		return cantNodos - 1;
+		this.setPeso(peso + calcularPeso(nodo.nodoDer));
+		this.setPeso(peso + calcularPeso(nodo.nodoIzq));
+		peso++;
+		return peso;
 	}
 }
