@@ -233,11 +233,34 @@ public class ArbolB {
 
 	public ArbolB clon() {
 		ArbolB clon = new ArbolB();
-		return clon(this.raiz, clon);
+		if (this.raiz != null) {
+			Nodo raizClon = new Nodo();
+			raizClon = this.raiz;
+			clon.raiz = raizClon;
+			clonar(this.raiz, clon.raiz);
+		}
+		return clon;
 	}
 
-	private ArbolB clon(Nodo nodo, ArbolB clon) {
-		
-		return null;
+	private void clonar(Nodo nodo, Nodo nodoClon) {
+		if (nodo.nodoIzq != null) {
+			nodoClon.nodoIzq = new Nodo();
+			nodoClon.nodoIzq = nodo.nodoIzq;
+			clonar(nodo.nodoIzq, nodoClon.nodoIzq);
+		}
+		if (nodo.nodoDer != null) {
+			nodoClon.nodoDer = new Nodo();
+			nodoClon.nodoDer = nodo.nodoDer;
+			clonar(nodo.nodoDer, nodoClon.nodoDer);
+		}
 	}
+
+	/*
+	 * thinking outloud.. private void clonar(Nodo nodo, Nodo nodoClon) { if
+	 * (nodo != null) { nodoClon = nodo; } if (nodo.nodoIzq != null) {
+	 * nodoClon.nodoIzq = nodo.nodoIzq; clonar(nodo.nodoIzq, nodoClon.nodoIzq);
+	 * } else { nodoClon.nodoIzq = null; } if (nodo.nodoDer != null) {
+	 * nodoClon.nodoDer = nodo.nodoDer; clonar(nodo.nodoDer, nodoClon.nodoDer);
+	 * } else { nodoClon.nodoDer = null; } }
+	 */
 }
