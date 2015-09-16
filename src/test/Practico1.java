@@ -46,29 +46,32 @@ public class Practico1 {
 	}
 
 	private static void ejercicio1_a() {
-
-		System.out.println(" Cantidad de nodos: " + arbolBin.getCantNodos());
+		System.out.println(" 1-a) Cantidad de nodos: "
+				+ arbolBin.getCantNodos());
 	}
 
 	private static void ejercicio1_b() {
 
-		System.out.println(" Cantidad de hojas: " + arbolBin.cantidadDeHojas());
+		System.out.println(" 1-b) Cantidad de hojas: "
+				+ arbolBin.cantidadDeHojas());
 	}
 
 	private static void ejercicio1_c() {
-		System.out.println(" El peso del arbol es: " + arbolBin.getPeso());
+		System.out.println(" 1-c) El peso del arbol es: " + arbolBin.getPeso());
 	}
 
 	private static void ejercicio1_d() {
-		System.out.println(" La altura del arbol es: " + arbolBin.getAltura());
+		System.out.println(" 1-d) La altura del arbol es: "
+				+ arbolBin.getAltura());
 	}
 
 	private static void ejercicio1_e() {
 		if (arbolBin.todosPares()) {
-			System.out.println(" Todos los elementos del árbol son pares. ");
+			System.out
+					.println(" 1-e) Todos los elementos del árbol son pares. ");
 		} else {
 			System.out
-					.println(" Existen impares entre los elementos del árbol. ");
+					.println(" 1-e) Existen impares entre los elementos del árbol. ");
 		}
 	}
 
@@ -77,15 +80,15 @@ public class Practico1 {
 		ArbolB arbolBin2 = new ArbolB();
 		arbolBin2.insertar(6);
 		if (arbolBin.esIgualA(arbolBin2)) {
-			System.out.println(" Los dos árboles son iguales. ");
+			System.out.println(" 1-f) Los dos árboles son iguales. ");
 		} else {
-			System.out.println(" Los dos árboles son diferentes. ");
+			System.out.println(" 1-f) Los dos árboles son diferentes. ");
 		}
 	}
 
 	private static void ejercicio1_g() {
-		// TODO Auto-generated method stub
-
+	ArbolB	arbolClon = arbolBin.clon();
+		System.out.println(" 1-g) Se hizo un clón del árbol. ");
 	}
 
 	private static void ejercicio1_h() {

@@ -211,8 +211,32 @@ public class ArbolB {
 				: false;
 	}
 
-	public boolean esIgualA(ArbolB arbol2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean esIgualA(ArbolB a2) {
+		return sonIguales(a2.raiz, this.raiz);
+	}
+
+	private boolean sonIguales(Nodo nodo2, Nodo nodo) {
+		if (nodo2 == null && nodo == null) {
+			return true;
+		} else if (nodo2.nodoIzq == null ^ nodo.nodoIzq == null) {
+			return false;
+		} else if (nodo2.nodoDer == null ^ nodo.nodoDer == null) {
+			return false;
+		} else if (nodo2.getDato() == nodo.getDato()) {
+			return true;
+		}
+		return sonIguales(nodo2.nodoIzq, nodo.nodoIzq)
+				&& sonIguales(nodo2.nodoDer, nodo.nodoDer) == true ? true
+				: false;
+	}
+
+	public ArbolB clon() {
+		ArbolB clon = new ArbolB();
+		return clon(this.raiz, clon);
+	}
+
+	private ArbolB clon(Nodo nodo, ArbolB clon) {
+		
+		return null;
 	}
 }
