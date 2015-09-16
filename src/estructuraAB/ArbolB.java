@@ -215,6 +215,7 @@ public class ArbolB {
 		return sonIguales(a2.raiz, this.raiz);
 	}
 
+	// XOR (^) in case you need to evaluate both sides for one negative.
 	private boolean sonIguales(Nodo nodo2, Nodo nodo) {
 		if (nodo2 == null && nodo == null) {
 			return true;
