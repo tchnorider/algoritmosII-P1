@@ -2,6 +2,7 @@ package test;
 
 import estructuraAB.ArbolB;
 import estructuraABB.ArbolBB;
+import estructuraAG.ArbolG;
 
 /*
  *  Algorithms II - Lab 1
@@ -11,6 +12,8 @@ public class Practico1 {
 	private static ArbolB arbolBin = new ArbolB();
 
 	private static ArbolBB arbolBinBusqueda;
+
+	private static ArbolG arbolG;
 
 	// static Integer hijo1 = 1, hijo2 = 2, hijo3 = 3, hijo4 = 4, hijo5 = 5;
 
@@ -43,6 +46,14 @@ public class Practico1 {
 		 * ejercicio3_e(); // list ascending order ejercicio3_f(); // list
 		 * descending order
 		 */
+		previousTask("ejercicio4");
+		ejercicio4_b();
+	}
+
+	private static void ejercicio4_b() {
+		// llamar
+		System.out.println("cant hojas" + arbolG.cantHojas());
+
 	}
 
 	private static void ejercicio1_a() {
@@ -150,6 +161,12 @@ public class Practico1 {
 			arbolBin.getRaiz().insertarHijo(hijo4);
 		} else if (input == "ejercicio2") {
 			arbolBinBusqueda = new ArbolBB();
+		} else if (input == "ejercicio4") {
+			ArbolG arbolG = new ArbolG();
+			arbolG.insertar("a");
+			arbolG.insertar("b");
+			arbolG.insertar("c");
+			arbolG.insertar("d");
 		}
 	}
 }
