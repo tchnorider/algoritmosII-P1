@@ -45,6 +45,10 @@ public class ArbolG {
 		}
 		return hojas;
 	}
+	
+	public Integer cantHojasClase() {
+		return cantHojas(this.raiz);
+	}
 
 	@SuppressWarnings("unused")
 	private Integer cantHojasClase(NodoG nodo) {
