@@ -46,14 +46,12 @@ public class Practico1 {
 	}
 
 	private static void ejercicio1_a() {
-		System.out.println(" 1-a) Cantidad de nodos: "
-				+ arbolBin.getCantNodos());
+		System.out.println(" 1-a) Cantidad de nodos: " + arbolBin.getCantNodos());
 	}
 
 	private static void ejercicio1_b() {
 
-		System.out.println(" 1-b) Cantidad de hojas: "
-				+ arbolBin.cantidadDeHojas());
+		System.out.println(" 1-b) Cantidad de hojas: " + arbolBin.cantidadDeHojas());
 	}
 
 	private static void ejercicio1_c() {
@@ -61,17 +59,14 @@ public class Practico1 {
 	}
 
 	private static void ejercicio1_d() {
-		System.out.println(" 1-d) La altura del arbol es: "
-				+ arbolBin.getAltura());
+		System.out.println(" 1-d) La altura del arbol es: " + arbolBin.getAltura());
 	}
 
 	private static void ejercicio1_e() {
 		if (arbolBin.todosPares()) {
-			System.out
-					.println(" 1-e) Todos los elementos del árbol son pares. ");
+			System.out.println(" 1-e) Todos los elementos del ï¿½rbol son pares. ");
 		} else {
-			System.out
-					.println(" 1-e) Existen impares entre los elementos del árbol. ");
+			System.out.println(" 1-e) Existen impares entre los elementos del ï¿½rbol. ");
 		}
 	}
 
@@ -80,20 +75,23 @@ public class Practico1 {
 		ArbolB arbolBin2 = new ArbolB();
 		arbolBin2.insertar(6);
 		if (arbolBin.esIgualA(arbolBin2)) {
-			System.out.println(" 1-f) Los dos árboles son iguales. ");
+			System.out.println(" 1-f) Los dos arboles son iguales. ");
 		} else {
-			System.out.println(" 1-f) Los dos árboles son diferentes. ");
+			System.out.println(" 1-f) Los dos arboles son diferentes. ");
 		}
 	}
 
 	private static void ejercicio1_g() {
-	ArbolB	arbolClon = arbolBin.clon();
-		System.out.println(" 1-g) Se hizo un clón del árbol. ");
+		ArbolB arbolClon = arbolBin.clon();
+		if (!arbolClon.equals(null)) {
+			System.out.println(" 1-g) Se hizo un clon del arbol. ");
+		}
 	}
 
 	private static void ejercicio1_h() {
-		// TODO Auto-generated method stub
-
+		if (!arbolBin.espejo().equals(null)) {
+			System.out.println(" 1-g) Se hizo un espejo del arbol. ");
+		}
 	}
 
 	private static void ejercicio1_i() {

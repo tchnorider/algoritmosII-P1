@@ -207,8 +207,7 @@ public class ArbolB {
 		if (nodo.getDato() % 2 == 0) {
 			return true;
 		}
-		return sonPares(nodo.nodoIzq) && sonPares(nodo.nodoDer) == true ? true
-				: false;
+		return sonPares(nodo.nodoIzq) && sonPares(nodo.nodoDer) == true ? true : false;
 	}
 
 	public boolean esIgualA(ArbolB a2) {
@@ -226,9 +225,24 @@ public class ArbolB {
 		} else if (nodo2.getDato() == nodo.getDato()) {
 			return true;
 		}
-		return sonIguales(nodo2.nodoIzq, nodo.nodoIzq)
-				&& sonIguales(nodo2.nodoDer, nodo.nodoDer) == true ? true
-				: false;
+		return sonIguales(nodo2.nodoIzq, nodo.nodoIzq) && sonIguales(nodo2.nodoDer, nodo.nodoDer);
+	}
+
+	// another solution to above function
+	// this is class's solution below
+	public boolean identical(ArbolB a2) {
+		return identical(a2.raiz, this.raiz);
+	}
+
+	private boolean identical(Nodo nodo2, Nodo nodo) {
+		if (nodo2 == null && nodo == null) {
+			return true;
+		} else if (nodo2 == null || nodo == null) {
+			return false;
+		} else if (nodo2.getDato() == nodo.getDato()) {
+			return true;
+		}
+		return sonIguales(nodo2.nodoIzq, nodo.nodoIzq) && sonIguales(nodo2.nodoDer, nodo.nodoDer);
 	}
 
 	public ArbolB clon() {
@@ -252,6 +266,67 @@ public class ArbolB {
 			nodoClon.nodoDer = new Nodo();
 			nodoClon.nodoDer = nodo.nodoDer;
 			clonar(nodo.nodoDer, nodoClon.nodoDer);
+		}
+	}
+
+	public ArbolB espejoClase(ArbolB a) {
+		ArbolB arbEspejo = new ArbolB();
+		if (this.raiz != null) {
+			arbEspejo.raiz = new Nodo(a.raiz.getDato());
+			espejoClase(a.raiz, arbEspejo.raiz);
+		}
+		System.out.println("arbol");
+		this.imprimir();
+		System.out.println("arbol espejo");
+		arbEspejo.imprimir();
+		return arbEspejo;
+	}
+
+	private void espejoClase(Nodo nodo, Nodo nodoEsp) {
+		if (nodo.nodoIzq == null && nodo.nodoDer == null) {
+			return;
+		}
+		if (nodo.nodoIzq != null) {
+			nodoEsp.nodoDer = new Nodo(nodo.nodoIzq.getDato());
+			espejo(nodo.nodoDer, nodoEsp.nodoDer);
+		}
+		if (nodo.nodoDer != null) {
+			nodoEsp.nodoIzq = new Nodo(nodo.nodoDer.getDato());
+			espejo(nodo.nodoIzq, nodoEsp.nodoIzq);
+		}
+	}
+
+	public ArbolB espejo() {
+		ArbolB arbEspejo = new ArbolB();
+		if (this.raiz != null) {
+			Nodo nodoEsp = new Nodo();
+			nodoEsp = this.raiz;
+			arbEspejo.raiz = nodoEsp;
+			espejo(this.raiz, arbEspejo.raiz);
+		}
+		System.out.println("arbol");
+		this.imprimir();
+		System.out.println("arbol espejo");
+		arbEspejo.imprimir();
+		return arbEspejo;
+	}
+
+	private void espejo(Nodo nodo, Nodo nodoEsp) {
+		if (nodo.nodoDer != null) {
+			Nodo n = new Nodo();
+			n = nodo.nodoDer;
+			nodoEsp.nodoIzq = n;
+			espejo(nodo.nodoIzq, nodoEsp.nodoIzq);
+		} else {
+			nodo.nodoIzq = null;
+		}
+		if (nodo.nodoIzq != null) {
+			Nodo n = new Nodo();
+			n = nodo.nodoIzq;
+			nodoEsp.nodoDer = n;
+			espejo(nodo.nodoDer, nodoEsp.nodoDer);
+		} else {
+			nodo.nodoDer = null;
 		}
 	}
 
