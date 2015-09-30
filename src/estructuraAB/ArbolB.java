@@ -2,7 +2,7 @@ package estructuraAB;
 
 public class ArbolB {
 
-	private Nodo raiz;
+	private NodoAB raiz;
 	private int cantNodos;
 	private int cantHojas;
 
@@ -11,7 +11,7 @@ public class ArbolB {
 	}
 
 	public ArbolB(int dato) {
-		this.raiz = new Nodo();
+		this.raiz = new NodoAB();
 		raiz.setDato(dato);
 		this.cantHojas = 0;
 	}
@@ -32,13 +32,13 @@ public class ArbolB {
 		return calcularPeso(this.raiz) - 1;
 	}
 
-	public Nodo getRaiz() {
+	public NodoAB getRaiz() {
 		return this.raiz;
 	}
 
 	// E.3 | A | insert(x)
 	public void insertar(int x) {
-		Nodo n = new Nodo(x);
+		NodoAB n = new NodoAB(x);
 		if (this.raiz == null) {
 			this.raiz = n;
 		} else {
@@ -47,7 +47,7 @@ public class ArbolB {
 	}
 
 	// Precondition: n <> null
-	private void insertar(Nodo n, Nodo raiz) {
+	private void insertar(NodoAB n, NodoAB raiz) {
 		if (raiz.getDato() > n.getDato()) {
 			if (n.nodoIzq == null) {
 				n.nodoIzq = n;
@@ -67,7 +67,7 @@ public class ArbolB {
 		imprimir(this.raiz);
 	}
 
-	private void imprimir(Nodo n) {
+	private void imprimir(NodoAB n) {
 		if (n == null) {
 			return;
 		}
@@ -84,7 +84,7 @@ public class ArbolB {
 	// true then the right call never gets done because there's no need to
 	// evaluate this return since either way the result will be true even if
 	// this return is false.
-	private boolean existe(Nodo n, int d) {
+	private boolean existe(NodoAB n, int d) {
 		if (n == null) {
 			return false;
 		}
@@ -94,11 +94,11 @@ public class ArbolB {
 		return existe(n.nodoIzq, d) || existe(n.nodoDer, d);
 	}
 
-	public Nodo buscar(int d) {
+	public NodoAB buscar(int d) {
 		return buscar(this.raiz, d);
 	}
 
-	private Nodo buscar(Nodo n, int d) {
+	private NodoAB buscar(NodoAB n, int d) {
 		if (n == null) {
 			return null;
 		}
@@ -106,7 +106,7 @@ public class ArbolB {
 			return n;
 		}
 
-		Nodo nodoAux = buscar(n.nodoIzq, d);
+		NodoAB nodoAux = buscar(n.nodoIzq, d);
 		if (nodoAux == null) {
 			return buscar(n.nodoDer, d);
 		} else {
@@ -118,7 +118,7 @@ public class ArbolB {
 		return cantidadDeHojas(this.raiz);
 	}
 
-	private int cantidadDeHojas(Nodo n) {
+	private int cantidadDeHojas(NodoAB n) {
 		if (n == null) {
 			return cantHojas;
 		}
@@ -138,7 +138,7 @@ public class ArbolB {
 		return altura(this.raiz);
 	}
 
-	private Integer altura(Nodo n) {
+	private Integer altura(NodoAB n) {
 		if (n == null) {
 			return -1;
 		}
@@ -148,7 +148,7 @@ public class ArbolB {
 	}
 
 	// Pre order: the father gets evaluated first
-	public void imprimirPreOrder(Nodo n) {
+	public void imprimirPreOrder(NodoAB n) {
 		if (n == null) {
 			return;
 		}
@@ -157,7 +157,7 @@ public class ArbolB {
 	}
 
 	// Post order: the children gets evaluated first
-	public void imprimirPostOrder(Nodo n) {
+	public void imprimirPostOrder(NodoAB n) {
 		if (n == null) {
 			return;
 		}
@@ -168,7 +168,7 @@ public class ArbolB {
 
 	// in order: evaluate right children first, then the father then the left
 	// children
-	public void imprimirInOrder(Nodo n) {
+	public void imprimirInOrder(NodoAB n) {
 		if (n == null) {
 			return;
 		}
@@ -177,7 +177,7 @@ public class ArbolB {
 		imprimirPostOrder(n.nodoIzq);
 	}
 
-	private Integer calcularCantidadNodos(Nodo nodo) {
+	private Integer calcularCantidadNodos(NodoAB nodo) {
 		if (nodo == null) {
 			return 0;
 		}
@@ -187,7 +187,7 @@ public class ArbolB {
 		return cantNodos;
 	}
 
-	private int calcularPeso(Nodo nodo) {
+	private int calcularPeso(NodoAB nodo) {
 		if (nodo == null) {
 			return 0;
 		}
@@ -200,7 +200,7 @@ public class ArbolB {
 		return sonPares(this.raiz);
 	}
 
-	private boolean sonPares(Nodo nodo) {
+	private boolean sonPares(NodoAB nodo) {
 		if (nodo == null) {
 			return false;
 		}
@@ -215,7 +215,7 @@ public class ArbolB {
 	}
 
 	// XOR (^) in case you need to evaluate both sides for one negative.
-	private boolean sonIguales(Nodo nodo2, Nodo nodo) {
+	private boolean sonIguales(NodoAB nodo2, NodoAB nodo) {
 		if (nodo2 == null && nodo == null) {
 			return true;
 		} else if (nodo2.nodoIzq == null ^ nodo.nodoIzq == null) {
@@ -234,7 +234,7 @@ public class ArbolB {
 		return identical(a2.raiz, this.raiz);
 	}
 
-	private boolean identical(Nodo nodo2, Nodo nodo) {
+	private boolean identical(NodoAB nodo2, NodoAB nodo) {
 		if (nodo2 == null && nodo == null) {
 			return true;
 		} else if (nodo2 == null || nodo == null) {
@@ -248,7 +248,7 @@ public class ArbolB {
 	public ArbolB clon() {
 		ArbolB clon = new ArbolB();
 		if (this.raiz != null) {
-			Nodo raizClon = new Nodo();
+			NodoAB raizClon = new NodoAB();
 			raizClon = this.raiz;
 			clon.raiz = raizClon;
 			clonar(this.raiz, clon.raiz);
@@ -256,14 +256,14 @@ public class ArbolB {
 		return clon;
 	}
 
-	private void clonar(Nodo nodo, Nodo nodoClon) {
+	private void clonar(NodoAB nodo, NodoAB nodoClon) {
 		if (nodo.nodoIzq != null) {
-			nodoClon.nodoIzq = new Nodo();
+			nodoClon.nodoIzq = new NodoAB();
 			nodoClon.nodoIzq = nodo.nodoIzq;
 			clonar(nodo.nodoIzq, nodoClon.nodoIzq);
 		}
 		if (nodo.nodoDer != null) {
-			nodoClon.nodoDer = new Nodo();
+			nodoClon.nodoDer = new NodoAB();
 			nodoClon.nodoDer = nodo.nodoDer;
 			clonar(nodo.nodoDer, nodoClon.nodoDer);
 		}
@@ -272,7 +272,7 @@ public class ArbolB {
 	public ArbolB espejoClase(ArbolB a) {
 		ArbolB arbEspejo = new ArbolB();
 		if (this.raiz != null) {
-			arbEspejo.raiz = new Nodo(a.raiz.getDato());
+			arbEspejo.raiz = new NodoAB(a.raiz.getDato());
 			espejoClase(a.raiz, arbEspejo.raiz);
 		}
 		System.out.println("arbol");
@@ -282,16 +282,16 @@ public class ArbolB {
 		return arbEspejo;
 	}
 
-	private void espejoClase(Nodo nodo, Nodo nodoEsp) {
+	private void espejoClase(NodoAB nodo, NodoAB nodoEsp) {
 		if (nodo.nodoIzq == null && nodo.nodoDer == null) {
 			return;
 		}
 		if (nodo.nodoIzq != null) {
-			nodoEsp.nodoDer = new Nodo(nodo.nodoIzq.getDato());
+			nodoEsp.nodoDer = new NodoAB(nodo.nodoIzq.getDato());
 			espejo(nodo.nodoDer, nodoEsp.nodoDer);
 		}
 		if (nodo.nodoDer != null) {
-			nodoEsp.nodoIzq = new Nodo(nodo.nodoDer.getDato());
+			nodoEsp.nodoIzq = new NodoAB(nodo.nodoDer.getDato());
 			espejo(nodo.nodoIzq, nodoEsp.nodoIzq);
 		}
 	}
@@ -299,7 +299,7 @@ public class ArbolB {
 	public ArbolB espejo() {
 		ArbolB arbEspejo = new ArbolB();
 		if (this.raiz != null) {
-			Nodo nodoEsp = new Nodo();
+			NodoAB nodoEsp = new NodoAB();
 			nodoEsp = this.raiz;
 			arbEspejo.raiz = nodoEsp;
 			espejo(this.raiz, arbEspejo.raiz);
@@ -311,9 +311,9 @@ public class ArbolB {
 		return arbEspejo;
 	}
 
-	private void espejo(Nodo nodo, Nodo nodoEsp) {
+	private void espejo(NodoAB nodo, NodoAB nodoEsp) {
 		if (nodo.nodoDer != null) {
-			Nodo n = new Nodo();
+			NodoAB n = new NodoAB();
 			n = nodo.nodoDer;
 			nodoEsp.nodoIzq = n;
 			espejo(nodo.nodoIzq, nodoEsp.nodoIzq);
@@ -321,7 +321,7 @@ public class ArbolB {
 			nodo.nodoIzq = null;
 		}
 		if (nodo.nodoIzq != null) {
-			Nodo n = new Nodo();
+			NodoAB n = new NodoAB();
 			n = nodo.nodoIzq;
 			nodoEsp.nodoDer = n;
 			espejo(nodo.nodoDer, nodoEsp.nodoDer);

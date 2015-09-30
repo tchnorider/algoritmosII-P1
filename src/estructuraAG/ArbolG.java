@@ -1,7 +1,11 @@
 package estructuraAG;
 
 public class ArbolG {
-	NodoG raiz;
+	public NodoG raiz;
+	
+	//?
+	//NodoG primerHijo;
+	
 	Integer hojas;
 
 	public ArbolG() {
@@ -60,6 +64,7 @@ public class ArbolG {
 		}
 		return cantHojas(nodo.primerHijo) + cantHojas(nodo.sigHermano);
 	}
+
 
 	public void insertar(String str) {
 		insertar(this.raiz, str);

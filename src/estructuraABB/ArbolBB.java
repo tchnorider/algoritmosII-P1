@@ -1,5 +1,10 @@
 package estructuraABB;
 
+import estructuraAB.ArbolB;
+import estructuraAB.NodoAB;
+import estructuraAG.ArbolG;
+import estructuraAG.NodoG;
+
 public class ArbolBB {
 
 	private Nodo raiz;
@@ -109,8 +114,7 @@ public class ArbolBB {
 		if (n.getDato() == x) {
 			return true;
 		} else {
-			return x > n.getDato() ? pertenece(x, n.nodoDer) : pertenece(x,
-					n.nodoIzq);
+			return x > n.getDato() ? pertenece(x, n.nodoDer) : pertenece(x, n.nodoIzq);
 		}
 	}
 
@@ -221,14 +225,75 @@ public class ArbolBB {
 		imprimirPostOrder(n.nodoIzq);
 	}
 
+	// Mover el transformar al Arbol Binario: clase ArbolB
+	public ArbolG transformar() {
+		ArbolG arbolG = new ArbolG();
+		if (this.raiz != null) {
+			arbolG.raiz = new NodoG(this.getRaiz().getDato());
+			return transformar(this.raiz, arbolG.raiz);
+		}
+		return null;
+	}
+	
+	private ArbolG transformar(Nodo raizBin, NodoG raizG) {
+		if (raizBin == null) {
+			return null;
+		}
+		if(raizBin.nodoIzq!=null){
+			NodoG nG = new NodoG(raizBin.nodoIzq.getDato());
+			raizG.primerHijo = nG;
+		}else{
+			raizG.primerHijo = null;
+		}
+		if(raizBin.nodoDer!=null){
+			NodoG nG = new NodoG(raizBin.nodoDer.getDato());
+			raizG.sigHermano = nG;
+		}else{
+			raizG.sigHermano = null;
+		}
+		return transformar(raizBin.nodoIzq,raizG.primerHijo);		
+	}
+	
+	// Mover el transformar al Arbol Binario: clase ArbolB
+	public ArbolG transformarClase(ArbolB a) {
+		ArbolG arbolG = new ArbolG();
+		if (a.getRaiz() != null) {
+			arbolG.raiz = new NodoG(a.getRaiz().getDato());
+			transformarClase(a.getRaiz(), arbolG.raiz);
+		}
+		return arbolG;
+	}
+
+	private void transformarClase(NodoAB a, NodoG n) {
+		if (a == null) {
+			return;
+		}
+		if(a.nodoIzq!=null){
+			NodoG nG = new NodoG(a.nodoIzq.getDato());
+			n.primerHijo = nG;
+			transformarClase(a.nodoIzq,n.primerHijo);
+		}
+		if(a.nodoDer!=null){
+			if(n.primerHijo!=null){
+				NodoG nG = new NodoG(a.nodoDer.getDato());
+				n.primerHijo.sigHermano = nG;
+				transformarClase(a.nodoDer,n.sigHermano);	
+			}else{
+				NodoG nG = new NodoG(a.nodoDer.getDato());
+				n.primerHijo=nG;
+				transformarClase(a.nodoDer, nG.primerHijo);
+			}
+		}
+	}
+
 	public void borrarElemento(Integer hijo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void insertarOrdenado(Integer entero) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

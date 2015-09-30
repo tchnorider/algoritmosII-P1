@@ -1,16 +1,16 @@
 package estructuraAB;
 
-public class Nodo {
+public class NodoAB {
 
 	private Integer dato;
-	public Nodo nodoDer;
-	public Nodo nodoIzq;
+	public NodoAB nodoDer;
+	public NodoAB nodoIzq;
 
-	public Nodo() {
+	public NodoAB() {
 
 	}
 
-	public Nodo(int d) {
+	public NodoAB(int d) {
 		this.dato = d;
 	}
 
@@ -24,15 +24,15 @@ public class Nodo {
 
 	public void insertarHijo(Integer hijo) {
 		if (this.nodoIzq == null) {
-			this.nodoIzq = new Nodo(hijo);
+			this.nodoIzq = new NodoAB(hijo);
 		} else {
 			insertarHijo(this.nodoIzq, hijo);
 		}
 	}
 
-	private void insertarHijo(Nodo nodo, Integer hijo) {
+	private void insertarHijo(NodoAB nodo, Integer hijo) {
 		if (nodo.nodoIzq == null) {
-			nodo.nodoIzq = new Nodo(hijo);
+			nodo.nodoIzq = new NodoAB(hijo);
 		} else {
 			insertarHijo(nodo.nodoIzq, hijo);
 		}
