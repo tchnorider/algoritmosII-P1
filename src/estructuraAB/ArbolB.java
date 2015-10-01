@@ -1,5 +1,7 @@
 package estructuraAB;
 
+import java.util.List;
+
 public class ArbolB {
 
 	private NodoAB raiz;
@@ -327,6 +329,44 @@ public class ArbolB {
 			espejo(nodo.nodoDer, nodoEsp.nodoDer);
 		} else {
 			nodo.nodoDer = null;
+		}
+	}
+
+	public void getNodosNivel(int i) {
+		Lista enterosNivelI = new Lista();
+		;
+		if (this.raiz != null) {
+			nodosNivelI(this.raiz, enterosNivelI, 0, i);
+		}
+	}
+
+	private void nodosNivelI(NodoAB n, Lista enterosNivelI, int currentLevel, int level) {
+
+		if (n != null) {
+			if (n.nodoIzq != null && currentLevel < level) {
+				nodosNivelI(n.nodoIzq, enterosNivelI, currentLevel, level);
+			} else if (n.nodoDer == null) {
+				// enterosNivelI.add(n);
+			}
+
+		}
+	}
+
+	public Lista getNodosNivelClase(int nivel) {
+		Lista res = new Lista();
+		getNN(this.getRaiz(), nivel, 0, res);
+		return res;
+	}
+
+	private void getNN(NodoAB n, int nivel, int nivelActual, Lista res) {
+		if (n == null) {
+			return;
+		}
+		if (nivel == nivelActual) {
+			res.agregar(n.getDato());
+		} else {
+			getNN(n.nodoIzq, nivel, nivelActual + 1, res);
+			getNN(n.nodoDer, nivel, nivelActual + 1, res);
 		}
 	}
 

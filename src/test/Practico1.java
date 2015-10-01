@@ -48,6 +48,23 @@ public class Practico1 {
 		 */
 		previousTask("ejercicio4");
 		ejercicio4_b();
+		
+		// transformar un arbol binario en un arbol general
+		ejercicio6();
+		
+		// obtener nivel
+		ejercicio7();
+	}
+
+	private static void ejercicio7() {
+	arbolBin.getNodosNivel(2);
+		
+	}
+
+	private static void ejercicio6() {
+		ArbolBB a = new ArbolBB();
+		a.transformarClase(arbolBin);
+	
 	}
 
 	private static void ejercicio4_b() {
