@@ -5,10 +5,6 @@ import estructuraAB.NodoAB;
 
 public class ArbolG {
 	public NodoG raiz;
-
-	// ?
-	// NodoG primerHijo;
-
 	Integer hojas;
 
 	public ArbolG() {
@@ -97,4 +93,48 @@ public class ArbolG {
 		}
 	}
 
+	public String camino(String p) {
+		String camino = "";
+		return camino(this.raiz, p, camino);
+
+	}
+
+	private String camino(NodoG n, String p, String camino) {
+		if (n == null) {
+			return "";
+		}
+		if (n.dato == p) {
+			return camino = camino + "-" + n.dato;
+
+		} else {
+			if (n.primerHijo.dato == p) {
+				camino = camino + "-" + n.dato;
+				return camino(n.primerHijo, p, camino);
+			}
+			if (n.sigHermano != null) {
+				return camino(n.sigHermano, p, camino);
+			}
+		}
+		return camino;
+	}
+
+	public String caminoClase(String p) {
+
+		return caminoClase(this.raiz, p);
+
+	}
+
+	private String caminoClase(NodoG n, String p) {
+		if (n == null) {
+			return "";
+		}
+		if (n.dato.equals(p)) {
+			return n.dato;
+		}
+		String aux = caminoClase(n.primerHijo, p);
+		if (!aux.equals(" ")) {
+			return aux + "|" + n.dato;
+		}
+		return caminoClase(n.sigHermano, p);
+	}
 }

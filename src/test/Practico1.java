@@ -52,12 +52,18 @@ public class Practico1 {
 		// transformar un arbol binario en un arbol general
 		ejercicio6();
 
-		// obtener nivel de un arbol binario 
+		// obtener nivel de un arbol binario
 		ejercicio7_a();
 
-		// obtener nivel de  un arbol general
+		// obtener nivel de un arbol general
 		ejercicio7_b();
 
+		ejercicio8();
+
+	}
+
+	private static void ejercicio8() {
+		System.out.println(arbolG.camino("d"));
 	}
 
 	private static void ejercicio7_a() {
