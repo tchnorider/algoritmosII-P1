@@ -1,11 +1,14 @@
 package estructuraAG;
 
+import estructuraAB.Lista;
+import estructuraAB.NodoAB;
+
 public class ArbolG {
 	public NodoG raiz;
-	
-	//?
-	//NodoG primerHijo;
-	
+
+	// ?
+	// NodoG primerHijo;
+
 	Integer hojas;
 
 	public ArbolG() {
@@ -49,7 +52,7 @@ public class ArbolG {
 		}
 		return hojas;
 	}
-	
+
 	public Integer cantHojasClase() {
 		return cantHojas(this.raiz);
 	}
@@ -65,7 +68,6 @@ public class ArbolG {
 		return cantHojas(nodo.primerHijo) + cantHojas(nodo.sigHermano);
 	}
 
-
 	public void insertar(String str) {
 		insertar(this.raiz, str);
 
@@ -74,6 +76,25 @@ public class ArbolG {
 	private void insertar(NodoG raiz2, String str) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public Lista getNodosNivelClase(int nivel) {
+		Lista res = new Lista();
+		getNN(this.raiz, nivel, 0, res);
+		return res;
+	}
+
+	private void getNN(NodoG n, int nivel, int nivelActual, Lista res) {
+		if (n == null) {
+			return;
+		}
+		if (nivel == nivelActual) {
+			res.agregar(n.datoInt);
+			getNN(n.primerHijo, nivel, nivelActual, res);
+		} else {
+			getNN(n.primerHijo, nivel, nivelActual + 1, res);
+			getNN(n.sigHermano, nivel, nivelActual, res);
+		}
 	}
 
 }
